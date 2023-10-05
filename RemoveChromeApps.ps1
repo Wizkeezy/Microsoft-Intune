@@ -1,5 +1,5 @@
 # Valores a buscar en el valor DisplayName
-$targetValues = "Gmail", "Hojas de cálculo", "Google Drive", "Youtube", "Documentos", "Presentaciones"
+$targetValues = "Gmail", "Hojas de calculo", "Google Drive", "Youtube", "Documentos", "Presentaciones"
 
 # Recorrer todas las subclaves en HKEY_USERS
 $usersPath = "Registry::HKEY_USERS"
@@ -20,7 +20,7 @@ foreach ($user in $users) {
                 $displayName = $registryKey.GetValue('DisplayName')
 
                  if ($displayName -in $targetValues) {
-                    Write-Host "Se encontró DisplayName: '$displayName' en $($subKey.PSChildName) del perfil de usuario $($user.PSChildName)"
+                    Write-Host "Se encontrÃ³ DisplayName: '$displayName' en $($subKey.PSChildName) del perfil de usuario $($user.PSChildName)"
 
                     # Eliminar la clave de registro correspondiente
                     Remove-Item -LiteralPath $subKey.PSPath -Force
@@ -30,29 +30,11 @@ foreach ($user in $users) {
     }
 }
 
- 
-
- 
-
- 
-
 #borrado carpeta menu inicio
 $usuarios = Get-ChildItem -Path 'C:\Users' -Directory
 
- 
-
- 
-
- 
-
 foreach ($usuario in $usuarios) {
     $rutaUsuario = Join-Path -Path $usuario.FullName -ChildPath 'AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Aplicaciones de Chrome'
-
- 
-
- 
-
- 
 
     if (Test-Path -Path $rutaUsuario -PathType Container) {
         Remove-Item -Path $rutaUsuario -Recurse -Force
